@@ -28,11 +28,17 @@
 <form on:submit={handleSubmit} class="grid gap-2">
 	<SimpleInput
 		type="text"
-		label="text"
+		label="username"
 		bind:value={username}
 		message={usernameMessage}
 		messageType={usernameMessageType}
 	/>
-	<SimpleInput type="text" label="text" bind:value={password} message={passwordMessage} messageType={passwordMessageType} />
-    <button class="bg-blue-500 rounded text-white text-lg p-1">submit</button>
+	<SimpleInput
+		type="password"
+		label="password"
+		bind:value={password}
+		message={passwordMessage}
+		messageType={passwordMessageType}
+	/>
+	<button class="bg-blue-500 rounded text-white text-lg p-1">submit</button>
 </form>
