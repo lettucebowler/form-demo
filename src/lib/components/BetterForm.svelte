@@ -119,7 +119,7 @@
 		value={input?.password || ''}
 		helpText="Must be at least 12 characters long."
 	/>
-	<button class="mt-2 h-9 rounded bg-blue-500 p-1 text-center text-lg text-white">
+	<button class="h-9 rounded bg-blue-500 p-1 text-center text-lg text-white">
 		{#if loading}
 			<svg
 				class="mx-auto h-full animate-spin text-center text-white"
@@ -138,5 +138,5 @@
 			submit
 		{/if}
 	</button>
-	<button class="my-2 rounded bg-blue-500 p-1 text-lg text-white" type="reset">Reset</button>
+	<button class="rounded bg-blue-500 p-1 text-lg text-white" type="reset">Reset</button>
 </form>
