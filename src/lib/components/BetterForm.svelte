@@ -4,6 +4,7 @@
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
 	import { slide } from 'svelte/transition';
 	import BetterInput from '$lib/components/BetterInput.svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	export let action = '/?default';
 	export let form;
@@ -41,7 +42,6 @@
 			form.message = '';
 		}
 		const invalidFields = validateLocal(formElement);
-		console.log(invalidFields);
 		if (invalidFields.length) {
 			cancel();
 		} else {
@@ -50,7 +50,7 @@
 
 		return async ({ result, update }) => {
 			await applyAction(result);
-			update();
+			await invalidateAll();
 			validationState.set({});
 			loading = false;
 		};
@@ -58,7 +58,7 @@
 </script>
 
 <form
-	class="grid max-w-md gap-2"
+	class="mx-2 box-border grid max-w-md gap-2"
 	method="POST"
 	use:enhance={enhanceForm}
 	bind:this={formElement}

@@ -1,5 +1,4 @@
 export const usernameValidation = (value: string) => {
-	console.log(value);
 	if (!value) {
 		return 'Username is required.';
 	}
@@ -14,7 +13,6 @@ export const usernameValidation = (value: string) => {
 };
 
 export const passwordValidation = (value: string) => {
-	console.log(value);
 	if (!value) {
 		return 'Password is required.';
 	}
@@ -22,7 +20,6 @@ export const passwordValidation = (value: string) => {
 };
 
 export const emailValidation = (value: string) => {
-	console.log(value);
 	if (!value) {
 		return 'Email is required.';
 	}
