@@ -4,13 +4,21 @@
 	import { slide } from 'svelte/transition';
 
 	export let value: string = '';
-	export let type: string = 'text';
 	export let label: string = 'label';
 	export let name = label.toLowerCase();
 	export let helpText = '';
 	export let validationStore: Writable<{
 		[x: string]: string;
 	}> = writable({});
+
+	//Native form validation passthrough
+	export let required: boolean | undefined = undefined;
+	export let minlength: number | undefined = undefined;
+	export let maxlength: number | undefined = undefined;
+	export let min: number | undefined = undefined;
+	export let max: number | undefined = undefined;
+	export let type: string = 'text';
+	export let pattern: string | undefined = undefined;
 
 	let inputElement: HTMLInputElement;
 
@@ -46,13 +54,19 @@
 	{label}
 	<input
 		{type}
+		{required}
+		{minlength}
+		{maxlength}
+		{min}
+		{max}
+		{pattern}
+		{name}
+		{value}
 		data-invalid={error ? true : undefined}
 		id={inputId}
-		{name}
-		on:input={handleInput}
 		bind:this={inputElement}
-		{value}
 		on:blur={handleBlur}
+		on:input={handleInput}
 		class="block rounded border-2 border-solid p-1 text-lg"
 	/>
 	{#if helpText}
