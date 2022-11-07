@@ -13,32 +13,24 @@
 		if (usernameMessage || passwordMessage) {
 			return;
 		}
-		alert(`${username}\n${password}`);
+
+		const data = {
+			username,
+			password
+		};
+		// do something with the data here;
+		alert(JSON.stringify(data));
 	};
 
 	let usernameMessage = '';
 	let passwordMessage = '';
-	let usernameMessageType = 'error';
-	let passwordMessageType = 'error';
 
 	let username = '';
 	let password = '';
 </script>
 
 <form on:submit={handleSubmit} class="grid gap-2">
-	<SimpleInput
-		type="text"
-		label="username"
-		bind:value={username}
-		message={usernameMessage}
-		messageType={usernameMessageType}
-	/>
-	<SimpleInput
-		type="password"
-		label="password"
-		bind:value={password}
-		message={passwordMessage}
-		messageType={passwordMessageType}
-	/>
-	<button class="bg-blue-500 rounded text-white text-lg p-1">submit</button>
+	<SimpleInput type="text" label="username" bind:value={username} message={usernameMessage} />
+	<SimpleInput type="password" label="password" bind:value={password} message={passwordMessage} />
+	<button class="rounded bg-blue-500 p-1 text-lg text-white">submit</button>
 </form>

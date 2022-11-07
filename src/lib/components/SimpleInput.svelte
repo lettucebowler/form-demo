@@ -3,7 +3,6 @@
 	export let type: string = 'text';
 	export let label: string = 'label';
 	export let message: string = '';
-	export let messageType = 'error';
 
 	let inputElement: HTMLInputElement;
 
@@ -13,22 +12,22 @@
 	const inputId = `input=${type}-${Math.floor(Math.random() * 1000000)}`;
 
 	$: {
-		if (message && messageType === 'error' && inputElement) {
+		if (message && inputElement) {
 			inputElement.focus();
 		}
 	}
 </script>
 
 <div>
-	<label for={inputId} class="font-medium block text-lg">{label}</label>
+	<label for={inputId} class="block text-lg font-medium">{label}</label>
 	<input
 		use:typeAction
 		id={inputId}
 		bind:value
 		bind:this={inputElement}
-		class="border-solid border-2 rounded p-1 block text-lg"
+		class="block rounded border-2 border-solid p-1 text-lg"
 	/>
 	{#if message}
-		<span class="text-red-500 text-sm">{message}</span>
+		<span class="text-sm text-red-500">{message}</span>
 	{/if}
 </div>
