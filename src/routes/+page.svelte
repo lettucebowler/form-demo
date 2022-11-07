@@ -12,8 +12,6 @@
 	const validationErrors: Writable<{
 		[name: string]: string;
 	}> = writable({});
-
-	$: console.log(form);
 </script>
 
 <BetterForm validationState={validationErrors} message={form?.message} input={form?.input || {}} />
