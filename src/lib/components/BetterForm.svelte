@@ -7,7 +7,20 @@
 	import { invalidateAll } from '$app/navigation';
 
 	export let action = '/?default';
-	export let form;
+	export let form: {
+		success: boolean;
+		message: string;
+		input: {
+			username: string;
+			password: string;
+			email: string;
+		};
+		validation: {
+			email: string;
+			password: string;
+			username: string;
+		};
+	};
 
 	$: input = form?.input || {};
 
@@ -38,9 +51,6 @@
 	let formElement: HTMLFormElement;
 
 	const enhanceForm: SubmitFunction = ({ data, action, cancel }) => {
-		if (form) {
-			form.message = '';
-		}
 		const invalidFields = validateLocal(formElement);
 		if (invalidFields.length) {
 			cancel();
@@ -55,27 +65,34 @@
 			loading = false;
 		};
 	};
+
+	const handleReset = () => {
+		validationState.set({});
+		form.message = '';
+	};
 </script>
 
 <form
-	class="mx-2 box-border grid max-w-md gap-2"
+	class="box-border grid max-w-md gap-2"
 	method="POST"
 	use:enhance={enhanceForm}
 	bind:this={formElement}
 	{action}
-	on:reset={() => validationState.set({})}
+	on:reset={handleReset}
 >
-	<h1 class="mb-4 text-2xl font-medium">Create an account</h1>
-	{#if form?.message}
-		<p
-			transition:slide={{ duration: 150 }}
-			class="text-xl font-medium"
-			class:text-red-500={!form?.success}
-			class:text-green-500={form?.success}
-		>
-			{form?.message}
-		</p>
-	{/if}
+	<div>
+		<h1 class="mb-4 text-2xl font-medium">Create an account</h1>
+		{#if form?.message}
+			<p
+				transition:slide={{ duration: 150 }}
+				class="text-xl font-medium"
+				class:text-red-500={!form?.success}
+				class:text-green-500={form?.success}
+			>
+				{form?.message}
+			</p>
+		{/if}
+	</div>
 	<BetterInput
 		type="email"
 		label="Email *"
@@ -102,7 +119,7 @@
 		value={input?.password || ''}
 		helpText="Must be at least 12 characters long."
 	/>
-	<button class="h-9 rounded bg-blue-500 p-1 text-center text-lg text-white">
+	<button class="mt-2 h-9 rounded bg-blue-500 p-1 text-center text-lg text-white">
 		{#if loading}
 			<svg
 				class="mx-auto h-full animate-spin text-center text-white"
@@ -121,5 +138,5 @@
 			submit
 		{/if}
 	</button>
-	<button class="rounded bg-blue-500 p-1 text-lg text-white" type="reset">Reset</button>
+	<button class="my-2 rounded bg-blue-500 p-1 text-lg text-white" type="reset">Reset</button>
 </form>

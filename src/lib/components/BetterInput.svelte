@@ -14,34 +14,44 @@
 
 	let inputElement: HTMLInputElement;
 
-	function typeAction(node: HTMLInputElement) {
-		node.type = type;
-	}
 	const inputId = `input-${name}`;
 
 	export let validationFunction = (value: string) => '';
 
 	const validateInput = () => {
+		console.log(inputElement.value);
 		const message = validationFunction(value);
 		$validationStore[name] = message;
 	};
 
 	const handleBlur = () => {
+		console.log('blur');
 		validateInput();
 	};
 
+	const handleInput = () => {
+		value = inputElement.value || '';
+	};
+
 	$: error = $validationStore[name];
+
+	$: {
+		if (inputElement) {
+			inputElement.value = value || '';
+		}
+	}
 </script>
 
 <label for={inputId} class="flex flex-col text-lg font-medium">
 	{label}
 	<input
-		use:typeAction
+		{type}
 		data-invalid={error ? true : undefined}
 		id={inputId}
-		bind:value
 		{name}
+		on:input={handleInput}
 		bind:this={inputElement}
+		{value}
 		on:blur={handleBlur}
 		class="block rounded border-2 border-solid p-1 text-lg"
 	/>

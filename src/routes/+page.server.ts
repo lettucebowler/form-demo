@@ -36,6 +36,7 @@ export const actions: Actions = {
 		if (Object.values(metadata.validation).filter(Boolean).length) {
 			metadata.input.username = username;
 			metadata.input.email = email;
+			metadata.input.password = '';
 		}
 
 		if (Object.values(metadata.validation).filter(Boolean).length) {
