@@ -11,14 +11,7 @@
 		[x: string]: string;
 	}> = writable({});
 
-	//Native form validation passthrough
-	export let required: boolean | undefined = undefined;
-	export let minlength: number | undefined = undefined;
-	export let maxlength: number | undefined = undefined;
-	export let min: number | undefined = undefined;
-	export let max: number | undefined = undefined;
 	export let type: string = 'text';
-	export let pattern: string | undefined = undefined;
 
 	let inputElement: HTMLInputElement;
 
@@ -54,12 +47,6 @@
 	{label}
 	<input
 		{type}
-		{required}
-		{minlength}
-		{maxlength}
-		{min}
-		{max}
-		{pattern}
 		{name}
 		{value}
 		data-invalid={error ? true : undefined}
