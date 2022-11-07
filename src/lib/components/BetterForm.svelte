@@ -78,22 +78,25 @@
 	{/if}
 	<BetterInput
 		type="email"
-		label="Email"
+		label="Email *"
+		name="email"
 		validationFunction={emailValidation}
 		validationStore={validationState}
 		value={input?.email || ''}
 	/>
 	<BetterInput
 		type="text"
-		label="Username"
+		label="Username *"
+		name="username"
 		validationFunction={usernameValidation}
 		validationStore={validationState}
 		value={input?.username || ''}
-		helpText="Optional. Must be at least 8 characters long. May contain letters, numbers, underscores, periods, dashed, or the @ symbol."
+		helpText="Must be at least 8 characters long. May contain letters, numbers, underscores, periods, dashed, or the @ symbol."
 	/>
 	<BetterInput
 		type="password"
-		label="Password"
+		label="Password *"
+		name="password"
 		validationFunction={passwordValidation}
 		validationStore={validationState}
 		value={input?.password || ''}

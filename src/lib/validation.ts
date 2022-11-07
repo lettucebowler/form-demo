@@ -7,7 +7,7 @@ export const usernameValidation = (value: string) => {
 	}
 	const validCharTest = /[^a-zA-Z0-9@._-]/;
 	if (validCharTest.test(value)) {
-		return 'Username may only contain numbers, letters, periods, dashes, underscores, or the @ symbol.';
+		return 'Username contains invalid characters.';
 	}
 	return '';
 };

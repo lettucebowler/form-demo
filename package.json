@@ -8,8 +8,8 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"lint": "prettier --ignore-path .gitignore --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --ignore-path .gitignore -w --plugin-search-dir=. ."
 	},
 	"devDependencies": {
 		"@formkit/auto-animate": "1.0.0-beta.3",
