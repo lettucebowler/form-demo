@@ -18,11 +18,16 @@ export const actions: Actions = {
 				email: ''
 			}
 		};
+
+		await new Promise((resolve) => setTimeout(resolve, 500));
+
 		const data = await event.request.formData();
 
 		const username = data.get('username')?.toString() || '';
 		metadata.validation.username = usernameValidation(username);
-		metadata.input.username = username;
+		if (metadata.validation.username) {
+			metadata.input.username = username;
+		}
 
 		const password = data.get('password')?.toString() || '';
 		metadata.validation.password = passwordValidation(password);
@@ -30,12 +35,15 @@ export const actions: Actions = {
 
 		const email = data.get('email')?.toString() || '';
 		metadata.validation.email = emailValidation(email);
-		metadata.input.email = email;
+		if (metadata.validation.email) {
+			metadata.input.username = email;
+		}
 
 		if (Object.values(metadata.validation).filter(Boolean).length) {
 			metadata.message = 'Invalid form data. please correct any displayed errors.';
 			return invalid(400, metadata);
 		}
+		metadata.message = 'yay! your account was created';
 		metadata.success = true;
 		return metadata;
 	}

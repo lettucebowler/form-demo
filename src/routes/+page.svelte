@@ -14,4 +14,4 @@
 	}> = writable({});
 </script>
 
-<BetterForm validationState={validationErrors} message={form?.message} input={form?.input || {}} />
+<BetterForm validationState={validationErrors} {form} />
