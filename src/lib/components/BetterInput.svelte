@@ -12,21 +12,18 @@
 	}> = writable({});
 
 	export let type: string = 'text';
+	export let validationFunction = (value: string) => '';
 
 	let inputElement: HTMLInputElement;
 
 	const inputId = `input-${name}`;
 
-	export let validationFunction = (value: string) => '';
-
 	const validateInput = () => {
-		console.log(inputElement.value);
-		const message = validationFunction(value);
+		const message = validationFunction(inputElement.value);
 		$validationStore[name] = message;
 	};
 
 	const handleBlur = () => {
-		console.log('blur');
 		validateInput();
 	};
 
@@ -35,12 +32,6 @@
 	};
 
 	$: error = $validationStore[name];
-
-	$: {
-		if (inputElement) {
-			inputElement.value = value || '';
-		}
-	}
 </script>
 
 <label for={inputId} class="flex flex-col text-lg font-medium">

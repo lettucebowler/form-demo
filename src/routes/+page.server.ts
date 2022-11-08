@@ -2,21 +2,29 @@ import type { Actions } from './$types';
 import { usernameValidation, passwordValidation, emailValidation } from '$lib/validation';
 import { invalid } from '@sveltejs/kit';
 
+type Input = {
+	username?: string;
+	email?: string;
+	password?: string;
+};
+
+type Validation = {
+	username?: string;
+	email?: string;
+	password?: string;
+};
+
 export const actions: Actions = {
 	default: async (event) => {
 		const metadata = {
 			success: false,
 			message: '',
-			input: {
-				username: '',
-				email: '',
-				password: ''
-			},
+			input: {} as Input,
 			validation: {
 				username: '',
 				password: '',
 				email: ''
-			}
+			} as Validation
 		};
 
 		await new Promise((resolve) => setTimeout(resolve, 500));
