@@ -5,7 +5,7 @@
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 
-	import BetterInput from '$lib/components/BetterInput.svelte';
+	import FormInput from '$lib/components/FormInput.svelte';
 	import SubmitButton from '$lib/components/SubmitButton.svelte';
 	import FormHeader from '$lib/components/FormHeader.svelte';
 
@@ -57,13 +57,13 @@
 </script>
 
 <form
-	class="box-border grid max-w-md gap-2"
+	class="mx-4 box-border grid max-w-md gap-2"
 	method="POST"
 	use:enhance={enhanceForm}
 	bind:this={formElement}
 >
 	<FormHeader message={form?.message} success={form?.success} label="Create an account" />
-	<BetterInput
+	<FormInput
 		type="email"
 		label="Email *"
 		name="email"
@@ -71,7 +71,7 @@
 		validationFunction={emailValidation}
 		value={form?.input?.email || ''}
 	/>
-	<BetterInput
+	<FormInput
 		type="text"
 		label="Username *"
 		name="username"
@@ -80,7 +80,7 @@
 		value={form?.input?.username || ''}
 		helpText="Must be at least 8 characters long. May contain letters, numbers, underscores, periods, dashed, or the @ symbol."
 	/>
-	<BetterInput
+	<FormInput
 		type="password"
 		label="Password *"
 		name="password"

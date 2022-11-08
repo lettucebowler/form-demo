@@ -18,13 +18,9 @@
 
 	const inputId = `input-${name}`;
 
-	const validateInput = () => {
+	const handleBlur = () => {
 		const message = validationFunction(inputElement.value);
 		$validationStore[name] = message;
-	};
-
-	const handleBlur = () => {
-		validateInput();
 	};
 
 	const handleInput = () => {
