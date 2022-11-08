@@ -41,6 +41,9 @@
 
 	const enhanceForm: SubmitFunction = ({ cancel }) => {
 		validationState.set({});
+		if (form) {
+			form.message = '';
+		}
 		const invalidFields = validateLocal(formElement);
 		if (invalidFields.length) {
 			cancel();

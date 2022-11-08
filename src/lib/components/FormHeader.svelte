@@ -13,7 +13,7 @@
 			transition:slide={{ duration: 150 }}
 			class="text-md rounded border-2 border-solid p-2 font-medium text-gray-500"
 			class:border-red-300={!success}
-			class:text-green-500={success}
+			class:border-green-300={success}
 		>
 			{message}
 		</p>
