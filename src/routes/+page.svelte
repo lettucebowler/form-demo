@@ -6,6 +6,7 @@
 	import { invalidateAll } from '$app/navigation';
 
 	import FormInput from '$lib/components/FormInput.svelte';
+	import CheckBox from '$lib/components/CheckBox.svelte';
 	import SubmitButton from '$lib/components/SubmitButton.svelte';
 	import FormHeader from '$lib/components/FormHeader.svelte';
 
@@ -92,5 +93,6 @@
 		value={form?.input?.password || ''}
 		helpText="Must be at least 12 characters long."
 	/>
+	<!-- <CheckBox label="I accept terms and conditions." helpText="Please" /> -->
 	<SubmitButton {loading} />
 </form>
